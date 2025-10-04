@@ -14,7 +14,8 @@ print("🚀 Setting up directories...")
 print("====================================")
 
 
-DATASET_DIR, OUTPUT_DIR, LOG_DIR = makedir()
+DATASET_DIR, LOG_DIR = makedir()
+OUTPUT_DIR = "/workspace/LoRA/LoRA_Output/Navya/"
 
 print("====================================")
 print("Training Configuration")

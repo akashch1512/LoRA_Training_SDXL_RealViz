@@ -1,10 +1,11 @@
 import os
 from Tools.unzip import unzip_file
 
-os.chdir("/workspace/")
+def resume_setup():
+    os.chdir("/workspace/")
 
-os.system('gdown "https://drive.google.com/uc?id=1ybTkd0d_XOazmk9B1VFxCRJHZXzLUDpp"')
+    os.system('gdown "https://drive.google.com/uc?id=1yBrlyIYzGHVla3Oiw1-wIZMIw7-i72I_"')
 
-unzip_file("Navya_LoRA_3000.zip", "/workspace/LoRA/LoRA_Output/Navya/")
+    os.system("tar -xvf /workspace/Navya.tar -C /workspace/LoRA/LoRA_Output/")
 
-print("✅ Resume setup completed!")
+    print("✅ Resume setup completed!")
