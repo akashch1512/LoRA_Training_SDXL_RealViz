@@ -25,9 +25,13 @@ os.chdir("/workspace/")
 
 os.system('gdown "https://drive.google.com/uc?id=1ybTkd0d_XOazmk9B1VFxCRJHZXzLUDpp"')
 
-sleep(2)
-
 unzip_file()
+
+os.system('gdown "https://drive.google.com/uc?id=1xbqKVXBAatUNVfSJDqB3WIc_WdDw6Grf"')
+
+unzip_file(location="/workspace/1_women.zip", dest="/workspace/LoRA/Navya/1_women")
+
+sleep(2)
 
 resume_setup()
 

@@ -38,8 +38,8 @@ STARTING_STEP = 500 # Your current step count
 # ----------------------
 
 RESOLUTION      = 1024
-BATCH_SIZE      = 1
-GRAD_ACC_STEPS  = 1
+BATCH_SIZE      = 4
+GRAD_ACC_STEPS  = 2
 MAX_STEPS       = 3000
 NETWORK_DIM     = 96
 NETWORK_ALPHA   = 96
@@ -64,7 +64,9 @@ accelerate launch --mixed_precision=bf16 /workspace/kohya_ss/sd-scripts/sdxl_tra
   --gradient_accumulation_steps={GRAD_ACC_STEPS} \\
   --max_train_steps={MAX_STEPS} \\
   --save_every_n_steps=500 \\
-  --text_encoder_lr=0.00004 \\
+  --text_encoder_lr=0.7 \\
+  --reg_data_dir="/workspace/LoRA/Navya/1_women" \\
+  --class_prompt="photo of a woman"
   --noise_offset=0.1 \\
   --min_snr_gamma=5 \\
   --save_last_n_steps=3 \\
@@ -80,7 +82,6 @@ accelerate launch --mixed_precision=bf16 /workspace/kohya_ss/sd-scripts/sdxl_tra
   --bucket_reso_steps=64 \\
   --log_with tensorboard \\
   --resume="{RESUME_PATH}" \\
-  --starting_step={STARTING_STEP} \\
   2>&1 | tee /workspace/train.log
 '''
 
