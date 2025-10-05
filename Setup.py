@@ -33,6 +33,12 @@ unzip_file(location="/workspace/1_women.zip", dest="/workspace/LoRA/Navya/1_wome
 
 sleep(2)
 
+os.system("mv /workspace/LoRA/Navya/1_women/content/1_women/* /workspace/LoRA/Navya/1_women")
+
+os.system("rm -r /workspace/LoRA/Navya/1_women/content")
+
+sleep(2)
+
 resume_setup()
 
 Install_Realviz()

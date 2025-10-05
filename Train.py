@@ -14,7 +14,7 @@ print("🚀 Setting up directories...")
 print("====================================")
 
 
-DATASET_DIR, LOG_DIR = makedir()
+DATASET_DIR, REG_DIR ,LOG_DIR = makedir()
 OUTPUT_DIR = "/workspace/LoRA/LoRA_Output/Navya/"
 
 print("====================================")
@@ -30,7 +30,7 @@ PRETRAINED_MODEL = "/workspace/RealVisXL_V5.0"
 # The directory where the training state was saved (usually the output_dir)
 # IMPORTANT: This directory must contain the 'last-state' or 'best-state' subfolder.
 # You chose '--save_state', so the directory will be in your OUTPUT_DIR.
-RESUME_PATH = f"{OUTPUT_DIR}" 
+RESUME_PATH = f"/workspace/LoRA/LoRA_Output/Navya/at-step00000500-state" 
 STARTING_STEP = 500 # Your current step count
 
 # ----------------------
@@ -39,8 +39,8 @@ STARTING_STEP = 500 # Your current step count
 
 RESOLUTION      = 1024
 BATCH_SIZE      = 4
-GRAD_ACC_STEPS  = 2
-MAX_STEPS       = 3000
+GRAD_ACC_STEPS  = 1
+MAX_STEPS       = 600
 NETWORK_DIM     = 96
 NETWORK_ALPHA   = 96
 LEARNING_RATE   = 0.7 
@@ -52,7 +52,8 @@ LEARNING_RATE   = 0.7
 train_cmd = f'''
 accelerate launch --mixed_precision=bf16 /workspace/kohya_ss/sd-scripts/sdxl_train_network.py \\
   --pretrained_model_name_or_path="{PRETRAINED_MODEL}" \\
-  --train_data_dir="{DATASET_DIR}" \\
+  --train_data_dir={DATASET_DIR} \\
+  --reg_data_dir="{REG_DIR}" \\
   --output_dir="{OUTPUT_DIR}" \\
   --logging_dir="{LOG_DIR}" \\
   --resolution={RESOLUTION} \\
@@ -63,10 +64,8 @@ accelerate launch --mixed_precision=bf16 /workspace/kohya_ss/sd-scripts/sdxl_tra
   --train_batch_size={BATCH_SIZE} \\
   --gradient_accumulation_steps={GRAD_ACC_STEPS} \\
   --max_train_steps={MAX_STEPS} \\
-  --save_every_n_steps=500 \\
+  --save_every_n_steps=150 \\
   --text_encoder_lr=0.7 \\
-  --reg_data_dir="/workspace/LoRA/Navya/1_women" \\
-  --class_prompt="photo of a woman"
   --noise_offset=0.1 \\
   --min_snr_gamma=5 \\
   --save_last_n_steps=3 \\
