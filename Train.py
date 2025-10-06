@@ -1,5 +1,6 @@
 from Tools.check_dependencys import check_dependencies
 from Tools.makedir import makedir
+from Tools.ring_my_pc import ring_my_pc
 import os
 
 print("====================================")
@@ -90,4 +91,6 @@ print("====================================")
 
 print("🚀 Resuming LoRA training with Colab Pro A100/L4...\n")
 exit_code = os.system(train_cmd)
+
 print("\n✅ Training finished with exit code:", exit_code)
+ring_my_pc()
