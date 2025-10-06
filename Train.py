@@ -16,7 +16,7 @@ print("====================================")
 
 
 DATASET_DIR, REG_DIR ,LOG_DIR = makedir()
-OUTPUT_DIR = "/workspace/LoRA/LoRA_Output/Navya/"
+
 
 print("====================================")
 print("Training Configuration")
@@ -31,7 +31,8 @@ PRETRAINED_MODEL = "/workspace/RealVisXL_V5.0"
 # The directory where the training state was saved (usually the output_dir)
 # IMPORTANT: This directory must contain the 'last-state' or 'best-state' subfolder.
 # You chose '--save_state', so the directory will be in your OUTPUT_DIR.
-RESUME_PATH = f"/workspace/LoRA/LoRA_Output/Navya/at-step00000500-state" 
+RESUME_PATH = f"/workspace/LoRA/LoRA_Output/Navya/at-step00000500-state/" 
+OUTPUT_DIR = "/workspace/LoRA/LoRA_Output/Navya/"
 STARTING_STEP = 500 # Your current step count
 
 # ----------------------
@@ -41,7 +42,7 @@ STARTING_STEP = 500 # Your current step count
 RESOLUTION      = 1024
 BATCH_SIZE      = 4
 GRAD_ACC_STEPS  = 1
-MAX_STEPS       = 600
+MAX_STEPS       = 4000
 NETWORK_DIM     = 96
 NETWORK_ALPHA   = 96
 LEARNING_RATE   = 0.7 
@@ -53,7 +54,7 @@ LEARNING_RATE   = 0.7
 train_cmd = f'''
 accelerate launch --mixed_precision=bf16 /workspace/kohya_ss/sd-scripts/sdxl_train_network.py \\
   --pretrained_model_name_or_path="{PRETRAINED_MODEL}" \\
-  --train_data_dir={DATASET_DIR} \\
+  --train_data_dir="{DATASET_DIR}" \\
   --reg_data_dir="{REG_DIR}" \\
   --output_dir="{OUTPUT_DIR}" \\
   --logging_dir="{LOG_DIR}" \\
